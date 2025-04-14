@@ -3,6 +3,7 @@ import ContactsList from "./ContactsList";
 
 function Contacts() {
   const [contacts, setContacts] = useState([]);
+  const [alert, setAlert]=useState("")
   const [contact, setContact] = useState({
     name: "",
     lastName: "",
@@ -18,14 +19,24 @@ function Contacts() {
   };
 
   const addHandler = () => {
-    setContacts((contacts) => [...contacts, contact])
-    setContact({
-        name: "",
-        lastName: "",
-        email: "",
-        phone: "",
+    if (
+      !contact.name ||
+      !contact.lastName ||
+      !contact.email ||
+      !contact.phone
+    ) {
+        setAlert("Please enter valid data!")
+        return;
 
-    })
+    }
+    setAlert("")
+    setContacts((contacts) => [...contacts, contact]);
+    setContact({
+      name: "",
+      lastName: "",
+      email: "",
+      phone: "",
+    });
   };
 
   return (
@@ -61,6 +72,7 @@ function Contacts() {
         />
         <button onClick={addHandler}>Add contact</button>
       </div>
+      <div>{alert && <p>{alert}</p>}</div>
       <ContactsList contacts={contacts} />
     </div>
   );
