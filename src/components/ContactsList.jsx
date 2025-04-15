@@ -1,8 +1,6 @@
 function ContactsList(props) {
-    console.log(props);
-  return (
-    <div>ContactsList</div>
-  )
+  console.log(props);
+  return <div>ContactsList</div>;
 }
 
-export default ContactsList
+export default ContactsList;
